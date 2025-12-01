@@ -41,7 +41,10 @@ st.line_chart(df)
 
 
 
-pu_data = np.array(data["CPU"])
+
+cpu_data = np.array(data["CPU"])
 threshold = cpu_data.mean() + 2 * cpu_data.std()
 anomalies = [i for i, val in enumerate(cpu_data) if val > threshold]
+st.write("Anomalies detected at indices:", anomalies)
+
 
