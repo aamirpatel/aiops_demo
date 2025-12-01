@@ -23,6 +23,17 @@ for _ in range(10):  # Collect 10 samples
     data["CPU"].append(psutil.cpu_percent())
     data["RAM"].append(psutil.virtual_memory().percent)
     data["Disk"].append(psutil.disk_usage('/').percent)
+
+
+    
+st.subheader("Log Explorer")
+uploaded_file = st.file_uploader("Upload log file")
+if uploaded_file:
+    logs = uploaded_file.read().decode("utf-8").splitlines()
+    keyword = st.text_input("Filter logs by keyword")
+    filtered = [line for line in logs if keyword.lower() in line.lower()]
+    st.dataframe(filtered)
+
     time.sleep(1)
 
 df = pd.DataFrame(data)
