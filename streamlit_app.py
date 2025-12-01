@@ -1,9 +1,9 @@
 
 import streamlit as st
 import psutil
-
 import time
 import pandas as pd
+import numpy as np
 
 
 st.title("AIOps Dashboard")
@@ -38,4 +38,10 @@ if uploaded_file:
 
 df = pd.DataFrame(data)
 st.line_chart(df)
+
+
+
+pu_data = np.array(data["CPU"])
+threshold = cpu_data.mean() + 2 * cpu_data.std()
+anomalies = [i for i, val in enumerate(cpu_data) if val > threshold]
 
